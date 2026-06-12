@@ -1,11 +1,12 @@
-from typing import Optional, Dict, Any
 from pydantic import BaseModel, Field
+from typing import Optional
 
-class TrackData(BaseModel):
+# Модель данных для аудио
+class AudioData(BaseModel):
     name: str
-    artist: str
+    author: str
     preview_url: Optional[str] = None
-    url: str  
-    duration: Optional[int] = Field(None, description="Продолжительность в секундах")
-    is_local: bool = False  
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    url: Optional[str] = None
+    duration_ms: Optional[int] = Field(default=0, description="Продолжительность музыки в миллисекундах")
+    is_permanent: bool = Field(default=False, description="Является ли ссылка постоянной?")
+    genre: Optional[str] = None
